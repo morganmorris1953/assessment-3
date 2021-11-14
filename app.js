@@ -3,6 +3,21 @@ let itemsList = []
 let inputItem;
 let itemValue;
 let chosenItem;
+
+
+const cowch = document.querySelector('cowch')
+const spongebob = document.querySelector('spongebob')
+const tiger_couch = document.querySelector('tiger_couch')
+const shoe = document.querySelector('shoe')
+const chicken = document.querySelector('chicken')
+const toaster = document.querySelector('toaster')
+const tacosaurus = document.querySelector('tacosaurus')
+const squirrel = document.querySelector('squirrel')
+const jesus_brush = document.querySelector('jesus_brush')
+const tp_hat = document.querySelector('tp_hat')
+
+
+
 window.onload = () => {
     
     document.getElementById("add-up-checkout-total").addEventListener("click", checkoutButtonClicked)
