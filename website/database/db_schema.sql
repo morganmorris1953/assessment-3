@@ -13,37 +13,46 @@
 -- Retrieve the product names and prices of all products ordered by the customer with first name "Bugs" and last name "Bunny"
 
 
-DROP TABLE IF EXISTS customers cascade;
+DROP TABLE IF EXISTS customers CASCADE;
 CREATE TABLE customers (
   id           serial primary key,
-  address_id    integer references addresses(id),
   first_name   varchar(255) NOT NULL,
   last_name    varchar(255) NOT NULL,
-  email      varchar(255) NOT NULL
+  date_of_birth DATE,
+  email      varchar(255) NOT NULL,
+  address     VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS purchases cascade;
-CREATE TABLE purchases (
-  id    serial primary key, 
-  user_id integer references customers(id),
-  order_date  DATE NOT NULL, 
-  order_item_name    varchar(255) NOT NULL, 
-  order_item_cost    DECIMAL
-);
-
-DROP TABLE IF EXISTS items;
-CREATE TABLE items (
-  id           integer PRIMARY KEY,
-  item_name   varchar(255) NOT NULL,
-  category    varchar(255) NOT NULL,
-  price       DECIMAL not null
-);
-
-DROP TABLE IF EXISTS addresses cascade;
-CREATE TABLE addresses (
+DROP TABLE IF EXISTS orders CASCADE;
+CREATE TABLE orders (
   id           serial PRIMARY KEY,
-  street   varchar(255) NOT NULL,
-  city    varchar(255) NOT NULL,
-  state_name    varchar(255) NOT NULL,
-  zip       INTEGER not null
+  customer_id   integer references customers(id),
+  order_date    DATE
 );
+
+DROP TABLE IF EXISTS order_products CASCADE;
+CREATE TABLE order_products (
+  id    serial primary key, 
+  order_id integer references orders(id),
+  product_id integer references products(id),
+  quantity  integer
+);
+
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE products (
+  id   integer PRIMARY KEY REFERENCES categories(id),
+  name        varchar(255) NOT NULL,
+  category    integer NOT NULL,
+  price       integer not null
+);
+
+DROP TABLE IF EXISTS categories CASCADE;
+CREATE TABLE categories (
+  id           integer primary KEY,
+  name        varchar(255) NOT NULL
+);
+
+
+
+
+
