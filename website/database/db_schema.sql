@@ -40,9 +40,9 @@ CREATE TABLE order_products (
 
 DROP TABLE IF EXISTS products CASCADE;
 CREATE TABLE products (
-  id   integer PRIMARY KEY REFERENCES categories(id),
+  id   integer PRIMARY KEY,
   name        varchar(255) NOT NULL,
-  category    integer NOT NULL,
+  category    integer NOT NULL REFERENCES categories(id),
   price       integer not null
 );
 
